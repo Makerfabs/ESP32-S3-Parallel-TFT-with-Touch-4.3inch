@@ -209,22 +209,21 @@ void page3()
         "^",
         "v",
         "<",
-        ">",
-        "    SPACE"};
+        ">"};
 
     clean_button();
 
-    b[0].set(120, 90, 80, 80, "NULL", ENABLE);
-    b[1].set(120, 180, 80, 80, "NULL", ENABLE);
-    b[2].set(20, 180, 80, 80, "NULL", ENABLE);
-    b[3].set(220, 180, 80, 80, "NULL", ENABLE);
-    b[4].set(20, 360, 280, 80, "NULL", ENABLE);
+    b[0].set(320, 90, 160, 160, "NULL", ENABLE);
+    b[1].set(320, 270, 160, 160, "NULL", ENABLE);
+    b[2].set(120, 270, 160, 160, "NULL", ENABLE);
+    b[3].set(520, 270, 160, 160, "NULL", ENABLE);
 
     // Button set
     for (int i = 0; i < BUTTON_COUNT_P3; i++)
     {
         b[i].setText(b_list[i]);
         b[i].setValue(i);
+        b[i].setTextSize(8);
         drawButton(b[i]);
     }
 
@@ -280,14 +279,14 @@ int get_pos()
         pos[0] = map(tp.points[0].x, TOUCH_MAP_X1, TOUCH_MAP_X2, 800 - 1, 0);
         pos[1] = map(tp.points[0].y, TOUCH_MAP_Y1, TOUCH_MAP_Y2, 0, 480 - 1);
 
-        delay(100);
+        // delay(100);
 
-        tp.read();
-        while (tp.isTouched)
-        {
-            tp.read();
-            delay(50);
-        }
+        // tp.read();
+        // while (tp.isTouched)
+        // {
+        //     tp.read();
+        //     delay(50);
+        // }
 
         Serial.print("ox = ");
         Serial.print(tp.points[0].x);
@@ -447,9 +446,6 @@ void key_input_3(int value)
         break;
     case 3:
         Keyboard.press(KEY_RIGHT_ARROW);
-        break;
-    case 4:
-        Keyboard.press(0x20);
         break;
     defualt:
         break;

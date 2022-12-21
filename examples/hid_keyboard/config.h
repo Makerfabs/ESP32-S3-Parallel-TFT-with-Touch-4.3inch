@@ -33,4 +33,4 @@
 #define BUTTON_COUNT_M 3
 #define BUTTON_COUNT_P1 5
 #define BUTTON_COUNT_P2 12
-#define BUTTON_COUNT_P3 5
+#define BUTTON_COUNT_P3 4

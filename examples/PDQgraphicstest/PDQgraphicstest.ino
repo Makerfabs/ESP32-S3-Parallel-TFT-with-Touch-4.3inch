@@ -63,8 +63,8 @@ void setup()
   cn = min(cx1, cy1);
   cn1 = cn - 1;
   tsa = ((w <= 176) || (h <= 160)) ? 1 : (((w <= 240) || (h <= 240)) ? 2 : 3); // text size A
-  tsb = ((w <= 272) || (h <= 220)) ? 1 : 2;                                    // text size B
-  tsc = ((w <= 220) || (h <= 220)) ? 1 : 2;                                    // text size C
+  tsb = ((w <= 272) || (h <= 220)) ? 1 : 3;                                    // text size B
+  tsc = ((w <= 220) || (h <= 220)) ? 1 : 3;                                    // text size C
   ds = (w <= 160) ? 9 : 12;                                                    // digit size
 
 #ifdef GFX_BL

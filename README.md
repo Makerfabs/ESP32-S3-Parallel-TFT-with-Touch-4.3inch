@@ -1,11 +1,11 @@
 # Makerfabs ESP32-S3 Parallel TFT with Touch 4.3inch
 ```c++
 /*
-Version:		V1.0
+Version:		V1.1
 Author:			Vincent
 Create Date:	2022/12/29
 Note:
-
+	2022/1/10 V1.1: Update code to match the V1.3 hardware.
 */
 ```
 
@@ -52,15 +52,41 @@ The ESP32-S3 has WiFi& Bluetooth 5.0, and 8M PSRAM ESP32-S3 is used in this prod
 - Type-C Power Delivery: Not Supported
 - Operation temperature: -40℃ to +85℃
 
+## Version Attention
+
+If the silk screen on the back of your hardware is V1.1, follow the Branch V1.1 procedure.
+
+V1.3 switches the touch screen RST and INT pins compared to V1.1 hardware.
+
+```c++
+// Hardware V1.3
+#define TOUCH_GT911_SCL 18
+#define TOUCH_GT911_SDA 17
+#define TOUCH_GT911_INT -1
+#define TOUCH_GT911_RST 38
+```
 
 
-# Code Explain
+
+# Code
 
 ## Complier Option
 
 - Install board : ESP32 .
-- Install library : GFX_Library_for_Arduino v1.3.1
+- Install libraries：
+
+![library](md_pic/library.jpg)
+
 - Use type-c use cable connect USB-TTL to PC.
 - Select "ESP32-S3 DEV Module"
 - Select PSRAM "OPI PSRAM"
 
+"mf_Lvgl" library is modified from Lvgl library (version 8.3.2). 
+
+Please unzip "lib/mf_Lvgl.zip" and copy to arduino library directory.
+
+## Factory test program
+
+examples\esp32s3_4.3_tft_fw_test
+
+You can run this file test if you feel that your hardware is not working properly. You need to copy the images from the Images folder to the included TF card.

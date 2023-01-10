@@ -6,17 +6,17 @@
 #include "TAMC_GT911.h"
 #include "Button.h"
 
-#define I2C_SDA_PIN 17
-#define I2C_SCL_PIN 18
-#define TOUCH_INT 38
-#define TOUCH_RST -1
+#define TOUCH_SDA 17
+#define TOUCH_SCL 18
+#define TOUCH_INT -1
+#define TOUCH_RST 38
+#define TOUCH_WIDTH 800
+#define TOUCH_HEIGHT 480
+
 #define TFT_BL 2
 
-#define TOUCH_ROTATION ROTATION_NORMAL
-#define TOUCH_MAP_X1 0
-#define TOUCH_MAP_X2 480
-#define TOUCH_MAP_Y1 270
-#define TOUCH_MAP_Y2 0
+#define TOUCH_ROTATION ROTATION_INVERTED
+
 
 #define COLOR_BACKGROUND BLACK
 #define COLOR_BUTTON BLACK

@@ -15,8 +15,8 @@
   #define TOUCH_GT911
   #define TOUCH_GT911_SCL 18
   #define TOUCH_GT911_SDA 17
-  #define TOUCH_GT911_INT 38
-  #define TOUCH_GT911_RST -1
+  #define TOUCH_GT911_INT -1
+  #define TOUCH_GT911_RST 38
   #define TOUCH_GT911_ROTATION ROTATION_NORMAL
 
 /* uncomment for XPT2046 */
@@ -31,9 +31,9 @@
 
 // Please fill below values from Arduino_GFX Example - TouchCalibration
 bool touch_swap_xy = false;
-int16_t touch_map_x1 = 480;
+int16_t touch_map_x1 = 800;
 int16_t touch_map_x2 = 0;
-int16_t touch_map_y1 = 272;
+int16_t touch_map_y1 = 480;
 int16_t touch_map_y2 = 0;
 
 

@@ -1,3 +1,4 @@
+//Confirm for V1.3
 
 #include "config.h"
 
@@ -16,7 +17,7 @@ Arduino_RPi_DPI_RGBPanel *gfx = new Arduino_RPi_DPI_RGBPanel(
     480 /* height */, 0 /* vsync_polarity */, 8 /* vsync_front_porch */, 4 /* vsync_pulse_width */, 8 /* vsync_back_porch */,
     1 /* pclk_active_neg */, 16000000 /* prefer_speed */, true /* auto_flush */);
 
-TAMC_GT911 tp = TAMC_GT911(I2C_SDA_PIN, I2C_SCL_PIN, -1, -1, 480, 272);
+TAMC_GT911 tp = TAMC_GT911(TOUCH_SDA, TOUCH_SCL, TOUCH_INT, TOUCH_RST, TOUCH_WIDTH, TOUCH_HEIGHT);
 
 USBHIDKeyboard Keyboard;
 
@@ -71,28 +72,27 @@ void main_page()
 
     while (1)
     {
-        get_pos();
-
-        for (int i = 0; i < BUTTON_COUNT_P1; i++)
-        {
-            int button_value = UNABLE;
-            if ((button_value = b[i].checkTouch(pos[0], pos[1])) != UNABLE)
+        if (get_pos() == 1)
+            for (int i = 0; i < BUTTON_COUNT_P1; i++)
             {
+                int button_value = UNABLE;
+                if ((button_value = b[i].checkTouch(pos[0], pos[1])) != UNABLE)
+                {
 
-                Serial.printf("Pos is :%d,%d\n", pos[0], pos[1]);
-                Serial.printf("Value is :%d\n", button_value);
-                Serial.printf("Text is :");
-                Serial.println(b[i].getText());
+                    Serial.printf("Pos is :%d,%d\n", pos[0], pos[1]);
+                    Serial.printf("Value is :%d\n", button_value);
+                    Serial.printf("Text is :");
+                    Serial.println(b[i].getText());
 
-                drawButton_p(b[i]);
-                delay(BUTTON_DELAY);
-                drawButton(b[i]);
+                    drawButton_p(b[i]);
+                    delay(BUTTON_DELAY);
+                    drawButton(b[i]);
 
-                page_switch(button_value);
+                    page_switch(button_value);
 
-                delay(200);
+                    delay(200);
+                }
             }
-        }
     }
 }
 
@@ -122,26 +122,26 @@ void page1()
 
     while (1)
     {
-        get_pos();
+        if (get_pos() == 1)
 
-        for (int i = 0; i < BUTTON_COUNT_P1; i++)
-        {
-            int button_value = UNABLE;
-            if ((button_value = b[i].checkTouch(pos[0], pos[1])) != UNABLE)
+            for (int i = 0; i < BUTTON_COUNT_P1; i++)
             {
+                int button_value = UNABLE;
+                if ((button_value = b[i].checkTouch(pos[0], pos[1])) != UNABLE)
+                {
 
-                Serial.printf("Pos is :%d,%d\n", pos[0], pos[1]);
-                Serial.printf("Value is :%d\n", button_value);
-                Serial.printf("Text is :");
-                Serial.println(b[i].getText());
+                    Serial.printf("Pos is :%d,%d\n", pos[0], pos[1]);
+                    Serial.printf("Value is :%d\n", button_value);
+                    Serial.printf("Text is :");
+                    Serial.println(b[i].getText());
 
-                drawButton_p(b[i]);
-                delay(BUTTON_DELAY);
-                drawButton(b[i]);
-                key_input_1(button_value);
-                delay(200);
+                    drawButton_p(b[i]);
+                    delay(BUTTON_DELAY);
+                    drawButton(b[i]);
+                    key_input_1(button_value);
+                    delay(200);
+                }
             }
-        }
     }
 }
 
@@ -178,26 +178,26 @@ void page2()
 
     while (1)
     {
-        get_pos();
+        if (get_pos() == 1)
 
-        for (int i = 0; i < BUTTON_COUNT_P2; i++)
-        {
-            int button_value = UNABLE;
-            if ((button_value = b[i].checkTouch(pos[0], pos[1])) != UNABLE)
+            for (int i = 0; i < BUTTON_COUNT_P2; i++)
             {
+                int button_value = UNABLE;
+                if ((button_value = b[i].checkTouch(pos[0], pos[1])) != UNABLE)
+                {
 
-                Serial.printf("Pos is :%d,%d\n", pos[0], pos[1]);
-                Serial.printf("Value is :%d\n", button_value);
-                Serial.printf("Text is :");
-                Serial.println(b[i].getText());
+                    Serial.printf("Pos is :%d,%d\n", pos[0], pos[1]);
+                    Serial.printf("Value is :%d\n", button_value);
+                    Serial.printf("Text is :");
+                    Serial.println(b[i].getText());
 
-                drawButton_p(b[i]);
-                delay(BUTTON_DELAY);
-                drawButton(b[i]);
-                key_input_2(button_value);
-                delay(200);
+                    drawButton_p(b[i]);
+                    delay(BUTTON_DELAY);
+                    drawButton(b[i]);
+                    key_input_2(button_value);
+                    delay(200);
+                }
             }
-        }
     }
 }
 
@@ -229,26 +229,26 @@ void page3()
 
     while (1)
     {
-        get_pos();
+        if (get_pos() == 1)
 
-        for (int i = 0; i < BUTTON_COUNT_P3; i++)
-        {
-            int button_value = UNABLE;
-            if ((button_value = b[i].checkTouch(pos[0], pos[1])) != UNABLE)
+            for (int i = 0; i < BUTTON_COUNT_P3; i++)
             {
+                int button_value = UNABLE;
+                if ((button_value = b[i].checkTouch(pos[0], pos[1])) != UNABLE)
+                {
 
-                Serial.printf("Pos is :%d,%d\n", pos[0], pos[1]);
-                Serial.printf("Value is :%d\n", button_value);
-                Serial.printf("Text is :");
-                Serial.println(b[i].getText());
+                    Serial.printf("Pos is :%d,%d\n", pos[0], pos[1]);
+                    Serial.printf("Value is :%d\n", button_value);
+                    Serial.printf("Text is :");
+                    Serial.println(b[i].getText());
 
-                drawButton_p(b[i]);
-                delay(BUTTON_DELAY);
-                drawButton(b[i]);
-                key_input_3(button_value);
-                delay(200);
+                    drawButton_p(b[i]);
+                    delay(BUTTON_DELAY);
+                    drawButton(b[i]);
+                    key_input_3(button_value);
+                    delay(200);
+                }
             }
-        }
     }
 }
 
@@ -266,27 +266,24 @@ void lcd_init()
 
 void touch_init()
 {
-    Wire.begin(I2C_SDA_PIN, I2C_SCL_PIN);
+    pinMode(TOUCH_RST, OUTPUT);
+    digitalWrite(TOUCH_RST, LOW);
+    delay(500);
+    digitalWrite(TOUCH_RST, HIGH);
+    delay(500);
+
     tp.begin();
-    tp.setRotation(ROTATION_NORMAL);
+    tp.setRotation(TOUCH_ROTATION);
 }
 
 int get_pos()
 {
     tp.read();
-    if (tp.isTouched)
+
+    if (tp.isTouched && pos[0] != tp.points[0].x && pos[1] != tp.points[0].y)
     {
-        pos[0] = map(tp.points[0].x, TOUCH_MAP_X1, TOUCH_MAP_X2, 800 - 1, 0);
-        pos[1] = map(tp.points[0].y, TOUCH_MAP_Y1, TOUCH_MAP_Y2, 0, 480 - 1);
-
-        // delay(100);
-
-        // tp.read();
-        // while (tp.isTouched)
-        // {
-        //     tp.read();
-        //     delay(50);
-        // }
+        pos[0] = tp.points[0].x;
+        pos[1] = tp.points[0].y;
 
         Serial.print("ox = ");
         Serial.print(tp.points[0].x);
@@ -297,6 +294,8 @@ int get_pos()
         Serial.print(", y = ");
         Serial.print(pos[1]);
         Serial.println();
+
+        tp.isTouched = false;
 
         return 1;
     }

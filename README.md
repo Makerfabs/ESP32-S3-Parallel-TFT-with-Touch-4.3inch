@@ -1,23 +1,23 @@
 # Makerfabs ESP32-S3 Parallel TFT with Touch 4.3inch
+
 ```c++
 /*
-Version:		V1.1
-Author:			Vincent
-Create Date:	2022/12/29
+Version:        V1.1
+Author:            Vincent
+Create Date:    2022/12/29
 Note:
-	2022/1/10 V1.1: Update code to match the V1.3 hardware.
+    2023/4/15 V1.2: Update V2.0 hardware.
+    2023/1/10 V1.1: Update code to match the V1.3 hardware.
 */
 ```
 
-[toc]
+[TOC]
 
 # Makerfabs
 
 [Makerfabs home page](https://www.makerfabs.com/)
 
 [Makerfabs Wiki](https://wiki.makerfabs.com/)
-
-
 
 # Makerfabs ESP32-S3 Parallel TFT with Touch 4.3inch
 
@@ -54,7 +54,13 @@ The ESP32-S3 has WiFi& Bluetooth 5.0, and 8M PSRAM ESP32-S3 is used in this prod
 
 ## Version Attention
 
-If the silk screen on the back of your hardware is V1.1, follow the Branch V1.1 procedure.
+### V2.0
+
+The codes has not been modified yet, please wait a little.
+
+Still working...
+
+### V1.3
 
 V1.3 switches the touch screen RST and INT pins compared to V1.1 hardware.
 
@@ -66,7 +72,9 @@ V1.3 switches the touch screen RST and INT pins compared to V1.1 hardware.
 #define TOUCH_GT911_RST 38
 ```
 
+### V1.1
 
+If the silk screen on the back of your hardware is V1.1, follow the Branch V1.1 procedure.
 
 # Code
 

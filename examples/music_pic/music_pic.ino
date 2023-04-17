@@ -1,3 +1,9 @@
+/*
+Author:Vincent
+Hardware:2.0
+
+Date 2023/4/17
+*/
 #include <SPI.h>
 #include <FS.h>
 #include <Wire.h>

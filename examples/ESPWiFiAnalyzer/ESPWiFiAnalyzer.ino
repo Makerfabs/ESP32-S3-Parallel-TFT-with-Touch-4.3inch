@@ -1,18 +1,16 @@
 /*
- * ESP WiFi Analyzer
- */
+Author:Vincent
+Hardware:2.0
 
-// POWER SAVING SETTING
-#define SCAN_INTERVAL 3000
-// #define SCAN_COUNT_SLEEP 3
-// #define LCD_PWR_PIN 14
-
-/*******************************************************************************
- * Start of Arduino_GFX setting
- ******************************************************************************/
+Date 2023/4/17
+*/
 #include <Arduino_GFX_Library.h>
-#define GFX_BL 2
-#define TFT_BL GFX_BL
+#include <WiFi.h>
+
+#define SCAN_INTERVAL 3000
+#define RSSI_CEILING -40
+#define RSSI_FLOOR -100
+
 Arduino_ESP32RGBPanel *bus = new Arduino_ESP32RGBPanel(
     GFX_NOT_DEFINED /* CS */, GFX_NOT_DEFINED /* SCK */, GFX_NOT_DEFINED /* SDA */,
     40 /* DE */, 41 /* VSYNC */, 39 /* HSYNC */, 42 /* PCLK */,
@@ -20,30 +18,13 @@ Arduino_ESP32RGBPanel *bus = new Arduino_ESP32RGBPanel(
     5 /* G0 */, 6 /* G1 */, 7 /* G2 */, 15 /* G3 */, 16 /* G4 */, 4 /* G5 */,
     8 /* B0 */, 3 /* B1 */, 46 /* B2 */, 9 /* B3 */, 1 /* B4 */
 );
-
-// Uncomment for ST7262 IPS LCD 800x480
- Arduino_RPi_DPI_RGBPanel *gfx = new Arduino_RPi_DPI_RGBPanel(
-   bus,
-   800 /* width */, 0 /* hsync_polarity */, 8 /* hsync_front_porch */, 4 /* hsync_pulse_width */, 8 /* hsync_back_porch */,
-   480 /* height */, 0 /* vsync_polarity */, 8 /* vsync_front_porch */, 4 /* vsync_pulse_width */, 8 /* vsync_back_porch */,
-   1 /* pclk_active_neg */, 16000000 /* prefer_speed */, true /* auto_flush */);
-
-/*******************************************************************************
- * End of Arduino_GFX setting
- ******************************************************************************/
-
-#if defined(ESP32)
-#include "WiFi.h"
-#else
-#include "ESP8266WiFi.h"
-#define log_i(format, ...) Serial.printf(format, ##__VA_ARGS__)
-#endif
+Arduino_RPi_DPI_RGBPanel *gfx = new Arduino_RPi_DPI_RGBPanel(
+    bus,
+    800 /* width */, 0 /* hsync_polarity */, 8 /* hsync_front_porch */, 4 /* hsync_pulse_width */, 8 /* hsync_back_porch */,
+    480 /* height */, 0 /* vsync_polarity */, 8 /* vsync_front_porch */, 4 /* vsync_pulse_width */, 8 /* vsync_back_porch */,
+    1 /* pclk_active_neg */, 16000000 /* prefer_speed */, true /* auto_flush */);
 
 int16_t w, h, text_size, banner_height, graph_baseline, graph_height, channel_width, signal_width;
-
-// RSSI RANGE
-#define RSSI_CEILING -40
-#define RSSI_FLOOR -100
 
 // Channel color mapping from channel 1 to 14
 uint16_t channel_color[] = {
@@ -55,29 +36,12 @@ uint8_t scan_count = 0;
 void setup()
 {
   Serial.begin(115200);
-  // Serial.setDebugOutput(true);
-  // while(!Serial);
   Serial.println("ESP WiFi Analyzer");
-
-#ifdef GFX_PWD
-  pinMode(GFX_PWD, OUTPUT);
-  digitalWrite(GFX_PWD, HIGH);
-#endif
 
   // Set WiFi to station mode and disconnect from an AP if it was previously connected
   WiFi.mode(WIFI_STA);
   WiFi.disconnect();
   delay(100);
-
-#if defined(LCD_PWR_PIN)
-  pinMode(LCD_PWR_PIN, OUTPUT);    // sets the pin as output
-  digitalWrite(LCD_PWR_PIN, HIGH); // power on
-#endif
-
-#ifdef GFX_BL
-  pinMode(GFX_BL, OUTPUT);
-  digitalWrite(GFX_BL, HIGH);
-#endif
 
   // init LCD
   gfx->begin();
@@ -127,11 +91,7 @@ void loop()
   int16_t height, offset, text_width;
 
   // WiFi.scanNetworks will return the number of networks found
-#if defined(ESP32)
   int n = WiFi.scanNetworks(false /* async */, true /* show_hidden */, true /* passive */, 500 /* max_ms_per_chan */);
-#else
-  int n = WiFi.scanNetworks(false /* async */, true /* show_hidden */);
-#endif
 
   // clear old graph
   gfx->fillRect(0, banner_height, w, h - banner_height, BLACK);
@@ -263,11 +223,8 @@ void loop()
         gfx->print('(');
         gfx->print(rssi);
         gfx->print(')');
-#if defined(ESP32)
+
         if (WiFi.encryptionType(i) == WIFI_AUTH_OPEN)
-#else
-        if (WiFi.encryptionType(i) == ENC_TYPE_NONE)
-#endif
         {
           gfx->print('*');
         }
@@ -330,25 +287,4 @@ void loop()
 
   // Wait a bit before scanning again
   delay(SCAN_INTERVAL);
-
-#if defined(SCAN_COUNT_SLEEP)
-  // POWER SAVING
-  if (++scan_count >= SCAN_COUNT_SLEEP)
-  {
-#if defined(LCD_PWR_PIN)
-    pinMode(LCD_PWR_PIN, INPUT); // disable pin
-#endif
-
-#if defined(GFX_BL)
-    pinMode(GFX_BL, INPUT); // disable pin
-#endif
-
-#if defined(ESP32)
-    esp_sleep_enable_ext0_wakeup(GPIO_NUM_36, LOW);
-    esp_deep_sleep_start();
-#else
-    ESP.deepSleep(0);
-#endif
-  }
-#endif // defined(SCAN_COUNT_SLEEP)
 }

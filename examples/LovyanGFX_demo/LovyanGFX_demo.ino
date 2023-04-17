@@ -1,3 +1,9 @@
+/*
+Author:Vincent
+Hardware:2.0
+
+Date 2023/4/17
+*/
 #include "LGFX_ESP32S3_RGB_MakerfabsParallelTFTwithTouch43.h"
 
 // 準備したクラスのインスタンスを作成します。

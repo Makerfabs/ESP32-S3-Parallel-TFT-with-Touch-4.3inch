@@ -1,19 +1,11 @@
 /*
-  Adapted from the Adafruit and Xark's PDQ graphicstest sketch.
+Author:Vincent
+Hardware:2.0
 
-  See end of file for original header text and MIT license info.
+Date 2023/4/17
 */
-
-/*******************************************************************************
- * Start of Arduino_GFX setting
- ******************************************************************************/
-/* Arduino_GFX try to find the settings depends on selected board in Arduino IDE */
-/* Or you can define the dev kit cannot find in board list */
 #include <Arduino_GFX_Library.h>
 
-#define ESP32_8048S043
-
-#define GFX_BL 2
 Arduino_ESP32RGBPanel *bus = new Arduino_ESP32RGBPanel(
     GFX_NOT_DEFINED /* CS */, GFX_NOT_DEFINED /* SCK */, GFX_NOT_DEFINED /* SDA */,
     40 /* DE */, 41 /* VSYNC */, 39 /* HSYNC */, 42 /* PCLK */,
@@ -30,27 +22,18 @@ Arduino_ESP32RGBPanel *bus = new Arduino_ESP32RGBPanel(
    1 /* pclk_active_neg */, 16000000 /* prefer_speed */, true /* auto_flush */);
 
 
-/*******************************************************************************
- * End of Arduino_GFX setting
- ******************************************************************************/
-
 int32_t w, h, n, n1, cx, cy, cx1, cy1, cn, cn1;
 uint8_t tsa, tsb, tsc, ds;
 
 void setup()
 {
   Serial.begin(115200);
-  // Serial.setDebugOutput(true);
-  // while(!Serial);
+
   Serial.println("Arduino_GFX library Test!");
 
-#ifdef GFX_PWD
-  pinMode(GFX_PWD, OUTPUT);
-  digitalWrite(GFX_PWD, HIGH);
-#endif
+
 
   gfx->begin();
-  // gfx->begin(80000000); /* specify data bus speed */
 
   w = gfx->width();
   h = gfx->height();
@@ -647,21 +630,3 @@ int32_t testRoundRects()
 
   return micros() - start;
 }
-
-/***************************************************
-  Original sketch text:
-
-  This is an example sketch for the Adafruit 2.2" SPI display.
-  This library works with the Adafruit 2.2" TFT Breakout w/SD card
-  ----> http://www.adafruit.com/products/1480
-
-  Check out the links above for our tutorials and wiring diagrams
-  These displays use SPI to communicate, 4 or 5 pins are required to
-  interface (RST is optional)
-  Adafruit invests time and resources providing this open source code,
-  please support Adafruit and open-source hardware by purchasing
-  products from Adafruit!
-
-  Written by Limor Fried/Ladyada for Adafruit Industries.
-  MIT license, all text above must be included in any redistribution
- ****************************************************/

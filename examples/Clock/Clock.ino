@@ -1,15 +1,12 @@
 /*
-   Arduino Watch Lite Version
-   You may find full version at: https://github.com/moononournation/ArduinoWatch
+Author:Vincent
+Hardware:2.0
+
+Date 2023/4/17
 */
 
-/*******************************************************************************
- * Start of Arduino_GFX setting
- ******************************************************************************/
 #include <Arduino_GFX_Library.h>
 
-#define GFX_BL 2
-#define TFT_BL GFX_BL
 Arduino_ESP32RGBPanel *bus = new Arduino_ESP32RGBPanel(
     GFX_NOT_DEFINED /* CS */, GFX_NOT_DEFINED /* SCK */, GFX_NOT_DEFINED /* SDA */,
     40 /* DE */, 41 /* VSYNC */, 39 /* HSYNC */, 42 /* PCLK */,
@@ -64,11 +61,6 @@ void setup(void)
 {
     gfx->begin();
     gfx->fillScreen(BACKGROUND);
-
-#ifdef GFX_BL
-    pinMode(GFX_BL, OUTPUT);
-    digitalWrite(GFX_BL, HIGH);
-#endif
 
     // init LCD constant
     w = gfx->width();

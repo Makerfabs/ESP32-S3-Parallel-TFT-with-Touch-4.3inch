@@ -60,6 +60,18 @@ The codes has not been modified yet, please wait a little.
 
 Still working...
 
+|           | V2.0 | V1.3 |
+| --------- | ---- | ---- |
+| LCD_BLK   | NULL | 2    |
+| I2S_DIN   | 19   | NULL |
+| I2S_BCLK  | 20   | NULL |
+| I2S_LRCLK | 2    | NULL |
+|           |      |      |
+
+Now the screen has no backlight PWM adjustment function, the pins are assigned to I2S. By default, the hardware backlight is always on.
+
+
+
 ### V1.3
 
 V1.3 switches the touch screen RST and INT pins compared to V1.1 hardware.

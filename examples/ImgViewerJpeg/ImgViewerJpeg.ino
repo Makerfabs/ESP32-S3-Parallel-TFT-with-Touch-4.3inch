@@ -33,7 +33,7 @@
  ******************************************************************************/
 #include <Arduino_GFX_Library.h>
 
-#define GFX_BL 2
+#define GFX_BL 44
 #define TFT_BL GFX_BL
 Arduino_ESP32RGBPanel *bus = new Arduino_ESP32RGBPanel(
     GFX_NOT_DEFINED /* CS */, GFX_NOT_DEFINED /* SCK */, GFX_NOT_DEFINED /* SDA */,

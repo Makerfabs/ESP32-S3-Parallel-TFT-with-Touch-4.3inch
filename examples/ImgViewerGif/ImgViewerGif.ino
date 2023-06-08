@@ -9,7 +9,7 @@
 #define SD_MOSI 11
 #define SD_CS 10
 
-#define TFT_BL 2
+#define TFT_BL 44
 
 // #define GIF_FILENAME "/ezgif.com-resize.gif"
 // #define GIF_FILENAME "/ezgif.com-optimize.gif"

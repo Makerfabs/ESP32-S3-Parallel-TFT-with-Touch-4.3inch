@@ -44,11 +44,11 @@ Arduino_ESP32RGBPanel *bus = new Arduino_ESP32RGBPanel(
 );
 
 // Uncomment for ST7262 IPS LCD 800x480
- Arduino_RPi_DPI_RGBPanel *gfx = new Arduino_RPi_DPI_RGBPanel(
-   bus,
-   800 /* width */, 0 /* hsync_polarity */, 8 /* hsync_front_porch */, 4 /* hsync_pulse_width */, 8 /* hsync_back_porch */,
-   480 /* height */, 0 /* vsync_polarity */, 8 /* vsync_front_porch */, 4 /* vsync_pulse_width */, 8 /* vsync_back_porch */,
-   1 /* pclk_active_neg */, 16000000 /* prefer_speed */, true /* auto_flush */);
+Arduino_RPi_DPI_RGBPanel *gfx = new Arduino_RPi_DPI_RGBPanel(
+    bus,
+    800 /* width */, 0 /* hsync_polarity */, 8 /* hsync_front_porch */, 4 /* hsync_pulse_width */, 8 /* hsync_back_porch */,
+    480 /* height */, 0 /* vsync_polarity */, 8 /* vsync_front_porch */, 4 /* vsync_pulse_width */, 8 /* vsync_back_porch */,
+    1 /* pclk_active_neg */, 16000000 /* prefer_speed */, true /* auto_flush */);
 
 /*******************************************************************************
  * End of Arduino_GFX setting
@@ -121,7 +121,10 @@ void setup()
 #endif
 
   // Init touch device
-  touch_init(gfx->width(), gfx->height());
+  touch_init();
+
+  while (0)
+    touch_touched();
 
   // Init Display
   gfx->begin();

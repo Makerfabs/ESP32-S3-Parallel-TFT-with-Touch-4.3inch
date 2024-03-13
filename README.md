@@ -92,7 +92,7 @@ If the silk screen on the back of your hardware is V1.1, follow the Branch V1.1 
 
 ## Complier Option
 
-- Install board : ESP32 .
+- Install board : ESP32 (Version 2.0.4)
 - Install libraries：
 
 ![library](md_pic/library.jpg)

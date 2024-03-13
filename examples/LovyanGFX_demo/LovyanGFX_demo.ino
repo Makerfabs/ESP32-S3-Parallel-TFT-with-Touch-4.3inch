@@ -2,6 +2,9 @@
 Author:Vincent
 Hardware:2.0
 
+Use 1.1.9      version     LovyanGFX
+Use 2.0.4     version     ESP32
+
 Date 2023/4/17
 */
 #include "LGFX_ESP32S3_RGB_MakerfabsParallelTFTwithTouch43.h"

@@ -1,0 +1,10 @@
+build/
+sdkconfig
+sdkconfig.old
+dependencies.lock
+.venv
+__pycache__/
+
+managed_components/
+.vscode/
+spiffs/

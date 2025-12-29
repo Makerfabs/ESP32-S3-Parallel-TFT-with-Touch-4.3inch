@@ -1,0 +1,23 @@
+idf_component_register(
+    SRCS 
+        "ui.c"
+        "ui_helpers.c"
+        "components/ui_comp.c"
+        "components/ui_comp_card.c"
+        "components/ui_comp_hook.c"
+        "screens/ui_Screen1.c"
+        "images/ui_img_wifi_png.c"
+        "images/ui_img_home_png.c"
+        "images/ui_img_1292609536.c"
+        "images/ui_img_image_png.c"
+        "images/ui_img_music_png.c"
+        "images/ui_img_bell_png.c"
+        "images/ui_img_settings_png.c"
+    INCLUDE_DIRS 
+        "."
+        "components" 
+        "screens"
+        "images"
+    REQUIRES 
+        lvgl
+)
